@@ -16,13 +16,12 @@ public class View_Main extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 400);
         this.setLocationRelativeTo(null);
-
+        
         initComponents();
         createMenuBar();
 
         this.setVisible(true);
     }
-
     private void initComponents() {
         tabPane = new JTabbedPane();
         tabPane.addTab("Workspace", createMainTabPanel());
@@ -84,7 +83,6 @@ public class View_Main extends JFrame {
         initPopupMenu();
         return historyPanel;
     }
-
     private void initPopupMenu() {
         popupMenu = new JPopupMenu();
         deleteRow = new JMenuItem("Delete");
@@ -92,7 +90,6 @@ public class View_Main extends JFrame {
         popupMenu.add(editRow);
         popupMenu.add(deleteRow);
     }
-
     private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 
@@ -180,8 +177,4 @@ public class View_Main extends JFrame {
     public JMenuItem getEditRow() {
         return editRow;
     }
-   public static void main(String[] args) {
-    	new View_Main();
-    }
-
 }
