@@ -38,14 +38,12 @@ public class View_Start extends JFrame implements ActionListener {
 		Box b2 = Box.createVerticalBox();
 		Box b3 = Box.createVerticalBox();
 		
-		
 		Box b1_1 = Box.createVerticalBox();
 		Box b1_2 = Box.createHorizontalBox();
 		b1_1.add(new JLabel("Group 6"));
 		b1_2.add(new JLabel("Trần Anh Khôi"));
 		b1_2.add(Box.createHorizontalStrut(10));
 		b1_2.add(new JLabel("Đỗ Văn Trình"));
-		
 		
 		b1.add(b1_1);
 		b1.add(Box.createVerticalStrut(5));
@@ -101,9 +99,7 @@ public class View_Start extends JFrame implements ActionListener {
 		b.add(b3);
 		b.add(Box.createHorizontalStrut(30));
 		
-		
 		pnlCenter.add(b, BorderLayout.SOUTH);
-		//pnlCenter.add(b1, BorderLayout.CENTER);
 		this.add(pnlCenter, BorderLayout.CENTER);
 		
 		JPanel	pnlSouth=new JPanel();
@@ -114,7 +110,6 @@ public class View_Start extends JFrame implements ActionListener {
 		b5.add(Box.createHorizontalStrut(200));
 		b5.add(btnStart=new JButton("Get Stated"));
 		b5.add(Box.createHorizontalStrut(30));
-		//b5.add(btnExit=new JButton("Exit"));
 		pnlSouth.add(b5);
 		this.add(pnlSouth,BorderLayout.SOUTH);
 		btnExit.addActionListener(this);
