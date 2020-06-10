@@ -27,9 +27,6 @@ public class Database {
 
     public void connect() throws ClassNotFoundException, SQLException {
         if (cnn == null) {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            final String DB_URL = "jdbc:sqlserver://localhost;integratedSecurity=true";
-//            cnn = DriverManager.getConnection(DB_URL);
             Class.forName("org.sqlite.JDBC");
             cnn = DriverManager.getConnection("jdbc:sqlite:db/" + DB_NAME + ".db");
             createDB();
@@ -51,28 +48,6 @@ public class Database {
                     "date text not null );";
             stm.execute(query);
         }
-        /*if (cnn == null) return;
-        Statement stm = null;
-        try {
-            stm = cnn.createStatement();
-            String sql = "create database " + DB_NAME;
-            stm.executeUpdate(sql);
-            sql = "use " + DB_NAME +
-                    ";create table Log ( " +
-                    "[id] int identity (1,1), " +
-                    "[input] nvarchar(1000) primary key," +
-                    "[output] nvarchar(1000) not null," +
-                    "[date] nvarchar(20) not null " +
-                    ")";
-            stm.executeUpdate(sql);
-        } catch (SQLException ignored) {
-            if (stm != null)
-                stm.execute("use " + DB_NAME);
-        } finally {
-            if (stm != null)
-                stm.close();
-        }*/
-
     }
 
     public void loadDB() throws SQLException {
