@@ -54,7 +54,7 @@ returns
 
 `"<table><thead><tr><th></th><th>lorem</th><th>ipsum</th></tr></thead><tbody><tr><td>1</td><td>dolor</td><td>sit amet</td></tr></tbody></table>"`
 
-As you can see, no linebreaks or whitespaces (except for the ones present in the array values) are included, so the HTML code is minified.
+As you can see, no line breaks or whitespaces (except for the ones present in the array values) are included, so the HTML code is minified.
 
 ----
 #### IMPORTANT NOTE: 
