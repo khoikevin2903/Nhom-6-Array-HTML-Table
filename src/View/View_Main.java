@@ -1,9 +1,10 @@
 package View;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class View_Main extends JFrame {
-    private JTextArea inputTA, outputTA;
+    private JTextArea inputTA;
     private JButton runBtn, saveBtn, clearBtn;
     private JMenuItem exitMenu, aboutMenu, gettingStarted, exportResult, deleteRow, editRow;
     private JCheckBox headerCB, indexCB;
@@ -13,15 +14,14 @@ public class View_Main extends JFrame {
 
     public View_Main() {
         this.setTitle("ArrayToHTMLTable");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 400);
-        this.setLocationRelativeTo(null);
-        
+//        this.setLocationRelativeTo(null);
+
         initComponents();
         createMenuBar();
-
-        this.setVisible(true);
     }
+
     private void initComponents() {
         tabPane = new JTabbedPane();
         tabPane.addTab("Workspace", createMainTabPanel());
@@ -83,6 +83,7 @@ public class View_Main extends JFrame {
         initPopupMenu();
         return historyPanel;
     }
+
     private void initPopupMenu() {
         popupMenu = new JPopupMenu();
         deleteRow = new JMenuItem("Delete");
@@ -90,6 +91,7 @@ public class View_Main extends JFrame {
         popupMenu.add(editRow);
         popupMenu.add(deleteRow);
     }
+
     private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 
@@ -116,10 +118,6 @@ public class View_Main extends JFrame {
 
     public JTextArea getInput() {
         return inputTA;
-    }
-
-    public JTextArea getOutput() {
-        return outputTA;
     }
 
     public JCheckBox getHeader() {
