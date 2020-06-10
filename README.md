@@ -64,6 +64,6 @@ As you can see, no line breaks or whitespaces (except for the ones present in th
 ## Requirement
 * `Java 8 or higher (Java 8 is recommended)`
 
-* `Microsoft SQL Server 2008 R2`
+* ~~`Microsoft SQL Server 2008 R2`~~
 
     
