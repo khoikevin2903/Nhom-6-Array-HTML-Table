@@ -107,10 +107,7 @@ public class View_Main extends JFrame {
         helpMenu.add(gettingStarted);
         helpMenu.add(aboutMenu);
 
-        JMenu windowMenu = new JMenu("Window");
-
         menuBar.add(fileMenu);
-        menuBar.add(windowMenu);
         menuBar.add(helpMenu);
 
         this.setJMenuBar(menuBar);
