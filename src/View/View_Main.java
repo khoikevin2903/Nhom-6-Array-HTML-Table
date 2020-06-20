@@ -64,9 +64,20 @@ public class View_Main extends JFrame {
 
         JPanel commandPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         commandPanel.setBorder(BorderFactory.createTitledBorder("Command"));
+       
+        ImageIcon iconRun = new ImageIcon("C:\\Users\\HP\\Desktop\\Nhom-6-Array-HTML-Table\\run.png");
+        
         runBtn = new JButton("Run");
+        runBtn.setIcon(iconRun);
+        
+        ImageIcon iconSave = new ImageIcon("C:\\Users\\HP\\Desktop\\Nhom-6-Array-HTML-Table\\save.png");
         saveBtn = new JButton("Save");
+        saveBtn.setIcon(iconSave);
+        
+        ImageIcon iconClear = new ImageIcon("C:\\Users\\HP\\Desktop\\Nhom-6-Array-HTML-Table\\clear.png");
         clearBtn = new JButton("Clear");
+        clearBtn.setIcon(iconClear);
+        
         commandPanel.add(runBtn);
         commandPanel.add(saveBtn);
         commandPanel.add(clearBtn);
