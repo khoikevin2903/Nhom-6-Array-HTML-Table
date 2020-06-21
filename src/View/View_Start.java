@@ -2,18 +2,16 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+
 
 public class View_Start extends JFrame {
     private JButton btnStart;
 
     public View_Start() {
         this.setTitle("ArrayToHTMLTable");
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         Gui();
-//        this.setVisible(true);
     }
 
     public void Gui() {
@@ -24,8 +22,6 @@ public class View_Start extends JFrame {
         pnlNorth.setForeground(Color.white);
         labelTopic.setOpaque(true);
         pnlNorth.setOpaque(true);
-        //pnlNorth.setBackground(Color.decode("#34ad95"));
-        //labelTopic.setBackground(Color.decode("#34ad95"));
         pnlNorth.add(labelTopic);
         this.add(pnlNorth, BorderLayout.NORTH);
 
@@ -78,10 +74,7 @@ public class View_Start extends JFrame {
         b3_2.add(new JLabel("- Output is a string containing HTML tags representing the data from input array."));
         b3_2.add(Box.createHorizontalStrut(10));
         b3_2.add(new JLabel("- Press Run button, result will appear in TextField of output panel."));
-        b3_2.add(new JLabel(""));
-        b3_2.add(new JLabel(""));
-        b3_2.add(new JLabel(""));
-        b3_2.add(new JLabel(""));
+     
 
 
         b3.add(b3_1);
@@ -117,5 +110,8 @@ public class View_Start extends JFrame {
 
     public JButton getBtnStart() {
         return btnStart;
+    }
+    public static void main(String[] args) {
+    	new View_Start().setVisible(true);
     }
 }
