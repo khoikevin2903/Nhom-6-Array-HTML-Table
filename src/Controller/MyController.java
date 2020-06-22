@@ -22,7 +22,6 @@ public class MyController {
     private final View_Output outputView;
     private final View_Start startView;
     private final Database database = Database.getInstance();
-    private final JFileChooser fileChooser = new JFileChooser();
     private final HTMLObjectTableModel model;
     private HTMLObject editObject = null;
     private HTMLObject myObject = null;
@@ -51,7 +50,7 @@ public class MyController {
         outputView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         mainView.setVisible(true);
-        outputView.setVisible(true);
+//        outputView.setVisible(true);
         startView.setVisible(true);
     }
 

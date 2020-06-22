@@ -99,7 +99,7 @@ public class View_Start extends JFrame {
         pnlSouth.add(b1, BorderLayout.WEST);
         Box b5 = Box.createHorizontalBox();
         b5.add(Box.createHorizontalStrut(200));
-		ImageIcon icon = new ImageIcon("C:\\Users\\HP\\Desktop\\Nhom-6-Array-HTML-Table\\getting.png");
+		ImageIcon icon = new ImageIcon("img/getting.png");
         b5.add(btnStart = new JButton("Get Stated"));
         btnStart.setIcon(icon);
         b5.add(Box.createHorizontalStrut(30));
@@ -110,8 +110,5 @@ public class View_Start extends JFrame {
 
     public JButton getBtnStart() {
         return btnStart;
-    }
-    public static void main(String[] args) {
-    	new View_Start().setVisible(true);
     }
 }

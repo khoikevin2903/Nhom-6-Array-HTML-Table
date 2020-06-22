@@ -2,3 +2,6 @@
 out/
 *.iml
 /bin/
+.settings
+.classpath
+.project
