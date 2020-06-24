@@ -40,6 +40,7 @@ public class HTMLObject {
         return "<span>" + "<" + "</span>" + "<span>" + str + "</span>" + "<span>" + ">" + "</span>";
     }
 
+    //Algorithm
     private String toTable() {
         StringBuilder table = new StringBuilder("<table>\n");
         if (header) {

@@ -4,11 +4,11 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HTMLObjectTableModel extends AbstractTableModel {
+public class TableModel extends AbstractTableModel {
     private final String[] colName = new String[]{"ID", "Input", "Output", "Date"};
     private List<HTMLObject> myObjects = new ArrayList<>();
 
-    public HTMLObjectTableModel() {
+    public TableModel() {
     }
 
     public void setMyObjects(List<HTMLObject> myObjects) {

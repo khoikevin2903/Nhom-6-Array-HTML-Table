@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Database;
 import Model.HTMLObject;
-import Model.HTMLObjectTableModel;
+import Model.TableModel;
 import View.View_Main;
 import View.View_Output;
 import View.View_Start;
@@ -22,7 +22,7 @@ public class MyController {
     private final View_Output outputView;
     private final View_Start startView;
     private final Database database = Database.getInstance();
-    private final HTMLObjectTableModel model;
+    private final TableModel model;
     private HTMLObject editObject = null;
     private HTMLObject myObject = null;
     private boolean editMode = false;
@@ -31,7 +31,7 @@ public class MyController {
         mainView = new View_Main();
         outputView = new View_Output();
         startView = new View_Start();
-        model = new HTMLObjectTableModel();
+        model = new TableModel();
 
         initView();
         initModel();
@@ -67,7 +67,9 @@ public class MyController {
 
     private void initMenuAction() {
         mainView.getAboutMenu().addActionListener(l -> JOptionPane.showMessageDialog(mainView,
-                "Not implement yet", "About", JOptionPane.INFORMATION_MESSAGE));
+                "18TCLC-Nhat\n" +
+                        "DoVanTrinh\n" +
+                        "TranAnhKhoi", "About", JOptionPane.INFORMATION_MESSAGE));
         mainView.getExitMenu().addActionListener(l -> mainView.dispatchEvent(new WindowEvent(mainView, WindowEvent.WINDOW_CLOSING)));
         mainView.getGettingStartedMenu().addActionListener(l -> {
             if (!startView.isVisible())
