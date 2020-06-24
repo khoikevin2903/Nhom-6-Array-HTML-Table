@@ -8,9 +8,7 @@ public class View_Output extends JFrame {
 
     public View_Output() {
         this.setTitle("ArrayToHTMLTable");
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
-//        this.setLocationRelativeTo(null);
 
         Gui();
     }

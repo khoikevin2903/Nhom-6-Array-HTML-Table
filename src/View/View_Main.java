@@ -74,7 +74,7 @@ public class View_Main extends JFrame {
         saveBtn = new JButton("Save");
         saveBtn.setIcon(iconSave);
         
-        ImageIcon iconClear = new ImageIcon("img/clear.png");
+        ImageIcon iconClear = new ImageIcon("img/delete.png");
         clearBtn = new JButton("Clear");
         clearBtn.setIcon(iconClear);
         

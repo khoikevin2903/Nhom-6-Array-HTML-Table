@@ -9,7 +9,7 @@ public class View_Start extends JFrame {
 
     public View_Start() {
         this.setTitle("ArrayToHTMLTable");
-        this.setSize(600, 400);
+        this.setSize(500, 350);
         this.setLocationRelativeTo(null);
         Gui();
     }
@@ -99,7 +99,7 @@ public class View_Start extends JFrame {
         pnlSouth.add(b1, BorderLayout.WEST);
         Box b5 = Box.createHorizontalBox();
         b5.add(Box.createHorizontalStrut(200));
-		ImageIcon icon = new ImageIcon("img/getting.png");
+		ImageIcon icon = new ImageIcon("img/get.png");
         b5.add(btnStart = new JButton("Get Stated"));
         btnStart.setIcon(icon);
         b5.add(Box.createHorizontalStrut(30));
