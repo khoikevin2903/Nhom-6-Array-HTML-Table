@@ -15,7 +15,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MyController {
     private final View_Main mainView;
@@ -23,9 +25,11 @@ public class MyController {
     private final View_Start startView;
     private final Database database = Database.getInstance();
     private final TableModel model;
+    private final List<Integer> deletedList = new ArrayList<>();
     private HTMLObject editObject = null;
-    private HTMLObject myObject = null;
+    private HTMLObject currentObject = null;
     private boolean editMode = false;
+
 
     public MyController() {
         mainView = new View_Main();
@@ -75,23 +79,7 @@ public class MyController {
             if (!startView.isVisible())
                 startView.setVisible(true);
         });
-        mainView.getExportResult().addActionListener(l -> {
-            JOptionPane.showMessageDialog(null,"Not implement yet");
-            /*if (myObject == null) {
-                JOptionPane.showMessageDialog(mainView, "Nothing to export",
-                        "Export information", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            if (fileChooser.showSaveDialog(mainView) == JFileChooser.APPROVE_OPTION) {
-                new Thread(() -> {
-                    try {
-                        exportDataToFile(fileChooser.getSelectedFile());
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(null, e.getMessage());
-                    }
-                }).start();
-            }*/
-        });
+
     }
 
     private void initWindowAction() {
@@ -115,10 +103,28 @@ public class MyController {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int option = JOptionPane.showConfirmDialog(mainView, "Do you want to exit!",
+                String message;
+
+                if (deletedList.size() != 0)
+                    message = "Save changes and exit";
+                else
+                    message = "Do you want to exit?";
+
+                int option = JOptionPane.showConfirmDialog(mainView, message,
                         "Exit Confirm", JOptionPane.OK_CANCEL_OPTION);
+
+                //Not save changes and exit
+                if (option == JOptionPane.CANCEL_OPTION && deletedList.size() != 0) {
+                    outputView.dispose();
+                    startView.dispose();
+                    mainView.dispose();
+                }
+
+                //Save changes and exit
                 if (option == JOptionPane.OK_OPTION) {
                     try {
+                        for (Integer id : deletedList)
+                            database.deleteInDB(id);
                         database.disconnect();
                     } catch (SQLException ignored) {
                     } finally {
@@ -142,23 +148,23 @@ public class MyController {
                 return;
             String[][] input = preProcessInput(rawInput);
             String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-            myObject = new HTMLObject(input, new boolean[]{header, index}, date);
+            currentObject = new HTMLObject(input, new boolean[]{header, index}, date);
             if (!outputView.isVisible()) outputView.setVisible(true);
-            outputView.getOutputTA().setText(myObject.getTable());
+            outputView.getOutputTA().setText(currentObject.getTable());
         });
 
         mainView.getSaveBtn().addActionListener(l -> {
-            if (myObject == null) return;
+            if (currentObject == null) return;
             if (editMode) {
-                myObject.setId(editObject.getId());
-                database.replaceByID(myObject);
+                currentObject.setId(editObject.getId());
+                database.replaceByID(currentObject);
                 editMode = false;
             } else {
-                myObject.setId(HTMLObject.ID_IDENTIFY++);
-                database.addObject(myObject);
+                currentObject.setId(HTMLObject.ID_IDENTIFY++);
+                database.addObject(currentObject);
             }
             try {
-                database.saveToDB(myObject);
+                database.saveToDB(currentObject);
                 refreshHistoryTable();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(mainView, "Cannot save data",
@@ -171,7 +177,7 @@ public class MyController {
             outputView.getOutputTA().setText("");
             mainView.getHeader().setSelected(false);
             mainView.getIndex().setSelected(false);
-            myObject = null;
+            currentObject = null;
             editObject = null;
             editMode = false;
         });
@@ -181,12 +187,11 @@ public class MyController {
         mainView.getDeleteRow().addActionListener(l -> {
             JTable table = mainView.getHistoryTable();
             int id = (int) model.getValueAt(table.getSelectedRow(), 0);
-            try {
+            int delete_confirm = JOptionPane.showConfirmDialog(mainView, "Delete?", "Delete confirm", JOptionPane.OK_CANCEL_OPTION);
+            if (delete_confirm == JOptionPane.OK_OPTION) {
+                deletedList.add(id);
                 database.deleteObjectByID(id);
                 refreshHistoryTable();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(mainView, e.getMessage(),
-                        "Delete Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         mainView.getEditRow().addActionListener(l -> {
@@ -218,25 +223,6 @@ public class MyController {
         model.fireTableDataChanged();
     }
 
-/*
-    private void exportDataToFile(File file) throws IOException {
-        String htmlTmp = readHTMLTemplate();
-        String output = myObject.getTableAsHTML();
-        String header = String.valueOf(myObject.getHeader());
-        String index = String.valueOf(myObject.getIndex());
-        String arr = Arrays.deepToString(myObject.getArr());
-        htmlTmp = htmlTmp.replaceAll("@output", output)
-                .replaceAll("@header", header)
-                .replaceAll("@index", index)
-                .replaceAll("@arr", arr);
-
-        try (FileWriter fw = new FileWriter(file);
-             BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(htmlTmp);
-        }
-    }
-*/
-
     private String[][] preProcessInput(String rawInput) {
         String[] rows = rawInput.split("\n");
         String[][] arr = new String[rows.length][];
@@ -261,17 +247,5 @@ public class MyController {
         return sb.toString();
     }
 
-/*
-    private String readHTMLTemplate() throws IOException {
-        File file = new File("template/IndexTemp.html");
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        }
-        return sb.toString();
-    }
-*/
+
 }
