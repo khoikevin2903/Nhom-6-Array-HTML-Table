@@ -6,7 +6,11 @@ import java.awt.*;
 public class View_Main extends JFrame {
     private JTextArea inputTA;
     private JButton runBtn, saveBtn, clearBtn;
-    private JMenuItem exitMenu, aboutMenu, gettingStarted, exportResult, deleteRow, editRow;
+    private JMenuItem exitMenu;
+    private JMenuItem aboutMenu;
+    private JMenuItem gettingStarted;
+    private JMenuItem deleteRow;
+    private JMenuItem editRow;
     private JCheckBox headerCB, indexCB;
     private JTabbedPane tabPane;
     private JTable table;
@@ -108,8 +112,6 @@ public class View_Main extends JFrame {
 
         JMenu fileMenu = new JMenu("File");
         exitMenu = new JMenuItem("Exit");
-        exportResult = new JMenuItem("Export...");
-        fileMenu.add(exportResult);
         fileMenu.add(exitMenu);
 
         JMenu helpMenu = new JMenu("Help");
@@ -150,10 +152,6 @@ public class View_Main extends JFrame {
 
     public JMenuItem getGettingStartedMenu() {
         return gettingStarted;
-    }
-
-    public JMenuItem getExportResult() {
-        return exportResult;
     }
 
     public JButton getSaveBtn() {
