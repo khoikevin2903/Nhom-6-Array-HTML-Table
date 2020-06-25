@@ -71,9 +71,9 @@ public class MyController {
 
     private void initMenuAction() {
         mainView.getAboutMenu().addActionListener(l -> JOptionPane.showMessageDialog(mainView,
-                "18TCLC-Nhat\n" +
-                        "DoVanTrinh\n" +
-                        "TranAnhKhoi", "About", JOptionPane.INFORMATION_MESSAGE));
+                "18TCLC-Nhat - BKDN\n" +
+                        "Đỗ Văn Trình\n" +
+                        "Trần Anh Khôi", "About", JOptionPane.INFORMATION_MESSAGE));
         mainView.getExitMenu().addActionListener(l -> mainView.dispatchEvent(new WindowEvent(mainView, WindowEvent.WINDOW_CLOSING)));
         mainView.getGettingStartedMenu().addActionListener(l -> {
             if (!startView.isVisible())
