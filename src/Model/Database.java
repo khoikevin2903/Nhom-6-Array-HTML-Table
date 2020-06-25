@@ -18,10 +18,8 @@ public class Database {
     }
 
     public static Database getInstance() {
-        if (instance == null) synchronized (Database.class) {
-            if (instance == null)
-                instance = new Database();
-        }
+        if (instance == null)
+            instance = new Database();
         return instance;
     }
 
@@ -115,7 +113,7 @@ public class Database {
         }
     }
 
-    private void deleteInDB(int id) throws SQLException {
+    public void deleteInDB(int id) throws SQLException {
         String deleteQuery = "delete from Log where id = " + id;
         Statement deleteStm = cnn.createStatement();
         deleteStm.executeUpdate(deleteQuery);
@@ -133,8 +131,7 @@ public class Database {
         this.myObjects.add(object);
     }
 
-    public void deleteObjectByID(int id) throws SQLException {
-        deleteInDB(id);
+    public void deleteObjectByID(int id) {
         myObjects.removeIf(o -> o.getId() == id);
     }
 
