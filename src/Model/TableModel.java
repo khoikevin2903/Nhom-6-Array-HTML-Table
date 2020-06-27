@@ -5,34 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableModel extends AbstractTableModel {
-    private final String[] colName = new String[]{"ID", "Input", "Output", "Date"};
-    private List<HTMLObject> myObjects = new ArrayList<>();
+    private final String[] colNames = new String[]{"ID", "Input", "Output", "Date"};
+    private List<HTMLObject> logTableData = new ArrayList<>();
 
     public TableModel() {
     }
 
-    public void setMyObjects(List<HTMLObject> myObjects) {
-        this.myObjects = myObjects;
+    public void setLogTableData(List<HTMLObject> data) {
+        this.logTableData = data;
     }
 
     @Override
     public String getColumnName(int column) {
-        return colName[column];
+        return colNames[column];
     }
 
     @Override
     public int getRowCount() {
-        return myObjects.size();
+        return logTableData.size();
     }
 
     @Override
     public int getColumnCount() {
-        return colName.length;
+        return colNames.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        HTMLObject object = myObjects.get(rowIndex);
+        HTMLObject object = logTableData.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return object.getId();
