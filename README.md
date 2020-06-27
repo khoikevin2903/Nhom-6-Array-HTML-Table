@@ -48,8 +48,6 @@ So, for example:
 
 `to_table([["lorem", "ipsum"], ["dolor", "sit amet"]], True, True)`
 
-`toTable([["lorem", "ipsum"], ["dolor", "sit amet"]], true, true) `
-
 returns
 
 `"<table><thead><tr><th></th><th>lorem</th><th>ipsum</th></tr></thead><tbody><tr><td>1</td><td>dolor</td><td>sit amet</td></tr></tbody></table>"`
