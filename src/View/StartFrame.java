@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class View_Start extends JFrame {
+public class StartFrame extends JFrame {
     private JButton btnStart;
 
-    public View_Start() {
+    public StartFrame() {
         this.setTitle("ArrayToHTMLTable");
         this.setSize(500, 350);
         this.setLocationRelativeTo(null);

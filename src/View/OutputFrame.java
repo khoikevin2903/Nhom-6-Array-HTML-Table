@@ -3,10 +3,10 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class View_Output extends JFrame {
+public class OutputFrame extends JFrame {
     private JTextArea tfOutput;
 
-    public View_Output() {
+    public OutputFrame() {
         this.setTitle("ArrayToHTMLTable");
         this.setSize(500, 500);
 

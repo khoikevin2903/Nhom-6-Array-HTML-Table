@@ -3,7 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class View_Main extends JFrame {
+public class WorkFrame extends JFrame {
     private JTextArea inputTA;
     private JButton runBtn, saveBtn, clearBtn;
     private JMenuItem exitMenu;
@@ -13,10 +13,10 @@ public class View_Main extends JFrame {
     private JMenuItem editRow;
     private JCheckBox headerCB, indexCB;
     private JTabbedPane tabPane;
-    private JTable table;
+    private JTable logTable;
     private JPopupMenu popupMenu;
 
-    public View_Main() {
+    public WorkFrame() {
         this.setTitle("ArrayToHTMLTable");
 //        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 400);
@@ -68,20 +68,20 @@ public class View_Main extends JFrame {
 
         JPanel commandPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         commandPanel.setBorder(BorderFactory.createTitledBorder("Command"));
-       
+
         ImageIcon iconRun = new ImageIcon("img/run.png");
-        
+
         runBtn = new JButton("Run");
         runBtn.setIcon(iconRun);
-        
+
         ImageIcon iconSave = new ImageIcon("img/save.png");
         saveBtn = new JButton("Save");
         saveBtn.setIcon(iconSave);
-        
+
         ImageIcon iconClear = new ImageIcon("img/delete.png");
         clearBtn = new JButton("Clear");
         clearBtn.setIcon(iconClear);
-        
+
         commandPanel.add(runBtn);
         commandPanel.add(saveBtn);
         commandPanel.add(clearBtn);
@@ -92,14 +92,14 @@ public class View_Main extends JFrame {
     }
 
     private JPanel createHistoryPanel() {
-        table = new JTable();
+        logTable = new JTable();
         JPanel historyPanel = new JPanel(new BorderLayout());
-        historyPanel.add(new JScrollPane(table), BorderLayout.CENTER);
-        initPopupMenu();
+        historyPanel.add(new JScrollPane(logTable), BorderLayout.CENTER);
+        createPopupMenu();
         return historyPanel;
     }
 
-    private void initPopupMenu() {
+    private void createPopupMenu() {
         popupMenu = new JPopupMenu();
         deleteRow = new JMenuItem("Delete");
         editRow = new JMenuItem("Edit");
@@ -158,8 +158,8 @@ public class View_Main extends JFrame {
         return saveBtn;
     }
 
-    public JTable getHistoryTable() {
-        return table;
+    public JTable getLogTable() {
+        return logTable;
     }
 
     public JTabbedPane getTabPane() {
