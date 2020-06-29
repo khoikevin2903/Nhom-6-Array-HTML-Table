@@ -29,8 +29,8 @@ public class WorkFrame extends JFrame {
 
     private void initComponents() {
         tabPane = new JTabbedPane();
-        tabPane.addTab("Workspace", createMainTabPanel());
-        tabPane.addTab("History", createHistoryPanel());
+        tabPane.addTab("Workspace", new ImageIcon("img\\work.png"), createMainTabPanel());
+        tabPane.addTab("History", new ImageIcon("img\\history.png"), createHistoryPanel());
         this.getContentPane().add(tabPane);
     }
 
@@ -89,6 +89,7 @@ public class WorkFrame extends JFrame {
 
         tabPanel1.add(mainPanel, BorderLayout.CENTER);
         tabPanel1.add(commandPanel, BorderLayout.SOUTH);
+
         return tabPanel1;
     }
 
@@ -113,12 +114,15 @@ public class WorkFrame extends JFrame {
 
         JMenu fileMenu = new JMenu("File");
         exportResultMenu = new JMenuItem("Export ...");
+        exportResultMenu.setIcon(new ImageIcon("img\\export.png"));
         exitMenu = new JMenuItem("Exit");
+        exitMenu.setIcon(new ImageIcon("img\\exit.png"));
         fileMenu.add(exportResultMenu);
         fileMenu.add(exitMenu);
 
         JMenu helpMenu = new JMenu("Help");
         aboutMenu = new JMenuItem("About");
+        aboutMenu.setIcon(new ImageIcon("img\\about.png"));
         gettingStarted = new JMenuItem("Getting Started");
         helpMenu.add(gettingStarted);
         helpMenu.add(aboutMenu);
