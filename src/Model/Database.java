@@ -52,7 +52,7 @@ public class Database {
     public void connectDB() throws ClassNotFoundException, SQLException {
         if (cnn == null) {
             Class.forName("org.sqlite.JDBC");
-            cnn = DriverManager.getConnection("jdbc:sqlite:DB/" + DB_NAME + ".db");
+            cnn = DriverManager.getConnection("jdbc:sqlite:db/" + DB_NAME + ".db");
             createDB();
         }
     }
