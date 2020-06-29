@@ -8,6 +8,7 @@ public class WorkFrame extends JFrame {
     private JButton runBtn, saveBtn, clearBtn;
     private JMenuItem exitMenu;
     private JMenuItem aboutMenu;
+    private JMenuItem exportResultMenu;
     private JMenuItem gettingStarted;
     private JMenuItem deleteRow;
     private JMenuItem editRow;
@@ -111,7 +112,9 @@ public class WorkFrame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("File");
+        exportResultMenu = new JMenuItem("Export ...");
         exitMenu = new JMenuItem("Exit");
+        fileMenu.add(exportResultMenu);
         fileMenu.add(exitMenu);
 
         JMenu helpMenu = new JMenu("Help");
@@ -140,6 +143,10 @@ public class WorkFrame extends JFrame {
 
     public JButton getRunBtn() {
         return runBtn;
+    }
+
+    public JMenuItem getExportResultMenu() {
+        return exportResultMenu;
     }
 
     public JMenuItem getExitMenu() {
