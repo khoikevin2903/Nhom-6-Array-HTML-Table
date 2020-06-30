@@ -104,7 +104,9 @@ public class WorkFrame extends JFrame {
     private void createPopupMenu() {
         popupMenu = new JPopupMenu();
         deleteRow = new JMenuItem("Delete");
+        deleteRow.setIcon(new ImageIcon("img\\btn_delete.png"));
         editRow = new JMenuItem("Edit");
+        editRow.setIcon(new ImageIcon("img\\edit.png"));
         popupMenu.add(editRow);
         popupMenu.add(deleteRow);
     }
