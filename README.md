@@ -41,7 +41,7 @@ and returns a string containing HTML tags representing the table.
               <td>row2, col2</td>
           </tr>                                     
        </tbody>                               
-       </table> 
+    </table> 
 The table header is optional. If `header` argument is `False` then the table starts with `<tbody>` tag, ommiting `<thead>`.
 
 So, for example: 

@@ -13,9 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class AppController {
     private final Database database = Database.getInstance();
     private final TableModel tableModel;
     private final List<Integer> deletedRowInLogTable = new ArrayList<>();
+    private final JFileChooser fileChooser = new JFileChooser();
     private HTMLObject editObject = null;
     private HTMLObject currentObject = null;
     private boolean editMode = false;
@@ -66,21 +69,6 @@ public class AppController {
         setMenuAction();
         setButtonAction();
         setTableAction();
-    }
-
-    private void setMenuAction() {
-        mainFrame.getAboutMenu().addActionListener(l -> JOptionPane.showMessageDialog(mainFrame,
-                "18TCLC-Nhat - BKDN\n" +
-                        "Đỗ Văn Trình\n" +
-                        "Trần Anh Khôi", "About", JOptionPane.INFORMATION_MESSAGE));
-
-        mainFrame.getExitMenu().addActionListener(l -> mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING)));
-
-        mainFrame.getGettingStartedMenu().addActionListener(l -> {
-            if (!startFrame.isVisible())
-                startFrame.setVisible(true);
-        });
-
     }
 
     private void setWorkFrameAction() {
@@ -136,6 +124,39 @@ public class AppController {
                 }
             }
         });
+    }
+
+    private void setMenuAction() {
+        mainFrame.getAboutMenu().addActionListener(l -> JOptionPane.showMessageDialog(mainFrame,
+                "Topic: Array To HTML Table\n" +
+                        "18TCLC-Nhat - Da Nang University of Science and Technology \n" +
+                        "Đỗ Văn Trình\n" +
+                        "Trần Anh Khôi\n", "About us", JOptionPane.INFORMATION_MESSAGE));
+
+        mainFrame.getExitMenu().addActionListener(l -> mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING)));
+
+        mainFrame.getGettingStartedMenu().addActionListener(l -> {
+            if (!startFrame.isVisible())
+                startFrame.setVisible(true);
+        });
+
+        mainFrame.getExportResultMenu().addActionListener(l -> {
+            if (outputFrame.getOutputTA().getText().equals("")) {
+                JOptionPane.showMessageDialog(mainFrame, "Nothing to export",
+                        "Export information", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            if (fileChooser.showSaveDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    exportDataToHTMLFile(fileChooser.getSelectedFile());
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(mainFrame, "Cannot export: " + e.getMessage(),
+                            "Export error", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
     }
 
     private void setButtonAction() {
@@ -195,7 +216,7 @@ public class AppController {
         mainFrame.getDeleteRow().addActionListener(l -> {
             JTable table = mainFrame.getLogTable();
             int id = (int) tableModel.getValueAt(table.getSelectedRow(), 0);
-            int delete_confirm = JOptionPane.showConfirmDialog(mainFrame, "Delete?", "Delete confirm", JOptionPane.OK_CANCEL_OPTION);
+            int delete_confirm = JOptionPane.showConfirmDialog(mainFrame, "Are you sure to delete?", "Confirm Delete", JOptionPane.OK_CANCEL_OPTION);
             if (delete_confirm == JOptionPane.OK_OPTION) {
                 deletedRowInLogTable.add(id);
                 database.deleteObjectByID(id);
@@ -232,7 +253,8 @@ public class AppController {
     }
 
     private String[][] preProcessInput(String rawInput) {
-        String[] rows = rawInput.split("\n");
+        rawInput += "\n";
+        String[] rows = rawInput.replaceAll(",,\n", ", ,\n").split("\n");
         String[][] input = new String[rows.length][];
         for (int i = 0; i < rows.length; i++) {
             String row = rows[i];
@@ -252,7 +274,37 @@ public class AppController {
             String tmp = String.join(", ", row);
             rawInput.append(tmp).append("\n");
         }
-        return rawInput.toString();
+        return rawInput.toString().replaceAll("null\n", ",")
+                .replaceAll("null", "");
     }
 
+    private void exportDataToHTMLFile(File file) throws IOException {
+        String indexTemp = readHTMLTemp();
+        String input = Arrays.deepToString(currentObject.getArr());
+        input = input.replaceAll("],", "],\n\t").replaceAll("null", "None");
+        String header = String.valueOf(currentObject.getHeader());
+        String index = String.valueOf(currentObject.getIndex());
+        String output = currentObject.getTable();
+        String date = currentObject.getDate();
+        indexTemp = indexTemp.replaceAll("@input", input)
+                .replaceAll("@header", header)
+                .replaceAll("@index", index)
+                .replaceAll("@output", output)
+                .replaceAll("@date", date);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(indexTemp);
+        }
+    }
+
+    private String readHTMLTemp() throws IOException {
+        File htmlTempFile = new File("temp/index.html");
+        StringBuilder htmlContent = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(htmlTempFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                htmlContent.append(line).append("\n");
+            }
+        }
+        return htmlContent.toString();
+    }
 }

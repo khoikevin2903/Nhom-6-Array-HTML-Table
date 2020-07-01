@@ -15,7 +15,7 @@ public class Database {
     /**
      * Đối tượng duy nhất giữ kết nối đến database
      */
-    private static volatile Database instance = null;
+    private static Database instance = null;
 
     /**
      * List dùng để lưu dữ liệu ở trong database để hiển thị ra LogTable
@@ -52,7 +52,7 @@ public class Database {
     public void connectDB() throws ClassNotFoundException, SQLException {
         if (cnn == null) {
             Class.forName("org.sqlite.JDBC");
-            cnn = DriverManager.getConnection("jdbc:sqlite:DB/" + DB_NAME + ".db");
+            cnn = DriverManager.getConnection("jdbc:sqlite:db/" + DB_NAME + ".db");
             createDB();
         }
     }

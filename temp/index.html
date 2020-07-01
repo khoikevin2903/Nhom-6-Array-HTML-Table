@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <style>
+        table {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table th,
+        td {
+            padding: 8px;
+            border: 1px solid #dddddd;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #b2ece9;
+        }
+
+        table tr:hover {
+            background-color: #1aa099;
+        }
+
+        table th {
+            text-align: left;
+            background-color: rgb(45, 226, 106);
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: white;
+        }
+
+        span {
+            display: flex;
+            justify-content: left;
+        }
+
+        pre span {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<pre><code style="font-family: Fira Code Medium,sans-serif;">
+<span style="font-weight: bold;font-size: large;">Input:</span>
+<span>2-D Array: @input</span>
+<span>Header: @header</span>
+<span>Index: @index</span></code></pre>
+
+<span style="font-weight: bold;font-size: large;font-family: Fira Code,sans-serif">Output:</span>
+
+<span>
+    @output
+</span>
+<p style="font-family: Fira Code,sans-serif;font-weight: bold;font-size: large">Date: @date</p>
+
+</body>
+
+</html>
