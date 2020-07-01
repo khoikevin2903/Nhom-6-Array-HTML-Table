@@ -128,9 +128,10 @@ public class AppController {
 
     private void setMenuAction() {
         mainFrame.getAboutMenu().addActionListener(l -> JOptionPane.showMessageDialog(mainFrame,
-                "18TCLC-Nhat - BKDN\n" +
+                "Topic: Array To HTML Table\n" +
+                        "18TCLC-Nhat - Da Nang University of Science and Technology \n" +
                         "Đỗ Văn Trình\n" +
-                        "Trần Anh Khôi", "About", JOptionPane.INFORMATION_MESSAGE));
+                        "Trần Anh Khôi\n", "About us", JOptionPane.INFORMATION_MESSAGE));
 
         mainFrame.getExitMenu().addActionListener(l -> mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING)));
 
@@ -215,7 +216,7 @@ public class AppController {
         mainFrame.getDeleteRow().addActionListener(l -> {
             JTable table = mainFrame.getLogTable();
             int id = (int) tableModel.getValueAt(table.getSelectedRow(), 0);
-            int delete_confirm = JOptionPane.showConfirmDialog(mainFrame, "Delete?", "Delete confirm", JOptionPane.OK_CANCEL_OPTION);
+            int delete_confirm = JOptionPane.showConfirmDialog(mainFrame, "Are you sure to delete?", "Confirm Delete", JOptionPane.OK_CANCEL_OPTION);
             if (delete_confirm == JOptionPane.OK_OPTION) {
                 deletedRowInLogTable.add(id);
                 database.deleteObjectByID(id);

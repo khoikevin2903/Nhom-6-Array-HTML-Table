@@ -3,10 +3,10 @@
     - In this problem the input is a 2-D array (M rows, N columns).
     - This application take input from TextField of input panel.
     - Input must following these rules:
-        + One row in TextField stand for one row in our array.
+        + One row in TextArea stand for one row in our array.
         + Cell of each row must be separated by a comma (',').
         + If you want something like null/None value, just not to write anything between two comma.
 * Output
     - Output is a string containing HTML tags representing the data from input array.
-    - Press Run button, result will appear in TextField of output panel.
+    - Press Run button, result will appear in TextArea of output panel.
 * Note that application only save data if you press Save button, otherwise it won't do anything.

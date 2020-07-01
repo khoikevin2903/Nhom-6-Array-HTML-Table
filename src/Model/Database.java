@@ -15,7 +15,7 @@ public class Database {
     /**
      * Đối tượng duy nhất giữ kết nối đến database
      */
-    private static volatile Database instance = null;
+    private static Database instance = null;
 
     /**
      * List dùng để lưu dữ liệu ở trong database để hiển thị ra LogTable
